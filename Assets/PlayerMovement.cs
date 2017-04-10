@@ -4,12 +4,19 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 
     float speed = 5f;
+    Animator anim;
     Rigidbody2D playerRB;
+    SpriteRenderer spriteRenderer;
 
-	// Use this for initialization
-	void Awake ()
+
+
+
+    // Use this for initialization
+    void Awake ()
     {
         playerRB = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
     }
 	
@@ -29,5 +36,19 @@ public class PlayerMovement : MonoBehaviour {
 
         // make the character move 
         playerRB.velocity = movement;
+
+
+        //Check that the player is looking in the direction he's moving
+        if ((h < 0f && !spriteRenderer.flipX) || (h > 0f && spriteRenderer.flipX))
+        {
+            spriteRenderer.flipX = !spriteRenderer.flipX;
+        }
+
+        //if h is zero, chracter is still
+        //if h is not zero, chracter is moving
+        bool isWalking = (h != 0f);
+
+        //set the boolean value to the condiiton above
+        anim.SetBool("isWalking", isWalking);
     }
 }
