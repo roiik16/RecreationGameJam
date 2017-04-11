@@ -2,22 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GUIScript : MonoBehaviour
 {
     public GameObject ImageObject;
     public GameObject TVanim;
+    public GameObject spacetext;
 
     int tv = 0;
 
+    bool atdoor = false;
+
+
+    void Update ()
+    {
+        if (atdoor == true && Input.GetButton("Jump"))
+        {
+            SceneManager.LoadScene("MuseumScene");
+            Debug.Log("Press Space bar to go");
+        }
+    }
+
     void OnTriggerEnter2D (Collider2D c)
     {
+        // Bill trigger
         if (c.tag == "Bill")
         {
             ImageObject.SetActive(true);
             Debug.Log("Bill Triggered");
         }
 
+        //TV trigger
         if (c.tag == "tv" && tv == 0)
         {
             TVanim.SetActive(true);
@@ -25,17 +41,37 @@ public class GUIScript : MonoBehaviour
             tv = 1;
         }
 
-        else
+        //Space text trigger
+        if (c.tag == "door")
         {
-            TVanim.SetActive(false);
+            spacetext.SetActive(true);
+            
         }
+        // Load new scene
+        if (c.tag == "door")
+       {
+            atdoor = true;
+            Debug.Log("Lets go steal some ideas !!!");
+            
+       }
 
-       
+
     }
 
     void OnTriggerExit2D(Collider2D c)
     {
         ImageObject.SetActive(false);
-        TVanim.SetActive(false);
+
+        if (c.tag == "tv" && tv == 1)
+        {
+            TVanim.SetActive(false);
+        }
+        
+
+        if (c.tag == "door")
+        {
+            spacetext.SetActive(false);
+        }
+
     }
 }
