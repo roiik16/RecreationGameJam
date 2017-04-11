@@ -9,7 +9,6 @@ public class GUIScript : MonoBehaviour
     public GameObject ImageObject;
     public GameObject TVanim;
     public GameObject spacetext;
-    public GameObject watchtvfirst;
 
     int tv = 0;
 
@@ -43,17 +42,15 @@ public class GUIScript : MonoBehaviour
         }
 
         //Space text trigger
-        if (c.tag == "door" && tv == 0)
+        if (c.tag == "door")
         {
-            watchtvfirst.SetActive(true);
             spacetext.SetActive(true);
+            
         }
-
         // Load new scene
-        if (c.tag == "door" && tv == 1)
+        if (c.tag == "door")
        {
             atdoor = true;
-            spacetext.SetActive(true);
             Debug.Log("Lets go steal some ideas !!!");
             
        }
@@ -74,7 +71,6 @@ public class GUIScript : MonoBehaviour
         if (c.tag == "door")
         {
             spacetext.SetActive(false);
-            watchtvfirst.SetActive(false);
         }
 
     }

@@ -46,9 +46,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GUIScript.cs" />
      <Compile Include="Assets\PlayerMovement.cs" />
      <Compile Include="Assets\gamemanager.cs" />
-     <Compile Include="Assets\scripts\GUIScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Maya/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
